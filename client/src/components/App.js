@@ -1,0 +1,32 @@
+import React, { Component } from 'react';
+import Blocks from './Blocks';
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { walletInfo: {} };
+  }
+
+  componentDidMount() {
+    fetch('http://localhost:3000/api/wallet-info')
+      .then(response => response.json())
+      .then(json => this.setState({ walletInfo: json }));
+  }
+
+  render() {
+    console.log(this.state.walletInfo);
+    const { address, balance } = this.state.walletInfo;
+
+    return (
+      <div>
+        <div>Welcome to the blockchain...</div>
+        <div>Address: {address}</div>
+        <div>Balance: {balance}</div>
+        <br />
+        <Blocks />
+      </div>
+    );
+  }
+}
+
+export default App;
