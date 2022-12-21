@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import logo from '../assets/logo.png';
 
 function App() {
 
@@ -15,20 +13,12 @@ function App() {
   const { address, balance } = walletInfo;
 
   return (
-    <div className='App'>
-      <img className='logo' src={logo} alt="" />
-      <br />
-      <div>Welcome to the blockchain...</div>
-      <br />
-      <div><Link to='/blocks'>Blocks</Link></div>
-      <div><Link to='/conduct-transaction'>Conduct a Transaction</Link></div>
-      <div><Link to='/transaction-pool'>Transaction Pool</Link></div>
-      <br />
-      <div className='WalletInfo'>
-        <div>Address: {address}</div>
-        <div>Balance: {balance}</div>
+    <div className='home'>
+      <div className='heading'>Welcome to the blockchain...</div>
+      <div className='wallet-info'>
+        <div><span>Address:</span> <span>{address}</span></div>
+        <div><span>Balance:</span> <span>{balance}</span></div>
       </div>
-      <br />
     </div>
   );
 }

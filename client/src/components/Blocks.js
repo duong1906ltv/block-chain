@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import Block from './Block';
 
 function Blocks() {
@@ -13,8 +12,7 @@ function Blocks() {
 
   return (
     <div>
-      <div><Link to='/'>Home</Link></div>
-      <h3>Blocks</h3>
+      <h3 className='heading'>Blocks</h3>
       {
         blocks.map(block => {
           return (

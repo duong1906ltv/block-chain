@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import App from './components/App';
 import Blocks from './components/Blocks';
 import ConductTransaction from './components/ConductTransaction';
+import SharedLayout from './components/SharedLayout';
 import TransactionPool from './components/TransactionPool';
 import './index.css';
 
@@ -11,10 +12,17 @@ const root = createRoot(document.getElementById('root')); // createRoot(containe
 root.render(
   <Router >
     <Routes>
-      <Route exact path='/' element={<App />} />
-      <Route path='/blocks' element={<Blocks />} />
-      <Route path='/conduct-transaction' element={<ConductTransaction />} />
-      <Route path='/transaction-pool' element={<TransactionPool />} />
+      <Route
+        path="/"
+        element={
+          <SharedLayout />
+        }
+      >
+        <Route exact path='/' element={<App />} />
+        <Route path='/blocks' element={<Blocks />} />
+        <Route path='/conduct-transaction' element={<ConductTransaction />} />
+        <Route path='/transaction-pool' element={<TransactionPool />} />
+      </Route>
     </Routes>
   </Router>
 

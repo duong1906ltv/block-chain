@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Transaction from './Transaction';
 
 function TransactionPool() {
@@ -8,7 +8,7 @@ function TransactionPool() {
 
   const navigate = useNavigate();
 
-  const POLL_INTERVAL_MS = 10000;
+  const POLL_INTERVAL_MS = 1000;
 
   const fetchMineTransactions = async () => {
     await fetch(`${document.location.origin}/api/mine-transactions`)
@@ -33,9 +33,8 @@ function TransactionPool() {
   }, []);
 
   return (
-    <div className='TransactionPool'>
-      <div><Link to='/'>Home</Link></div>
-      <h3>Transaction Pool</h3>
+    <div className='transaction-pool'>
+      <h3 className='heading'>Transaction Pool</h3>
       {
         Object.values(transactionPoolMap).map(transaction => {
           return (

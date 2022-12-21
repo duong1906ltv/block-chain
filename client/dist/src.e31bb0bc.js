@@ -35425,9 +35425,7 @@ function warning(cond, message) {
     } catch (e) {}
   }
 } //#endregion
-},{"react":"../../node_modules/react/index.js","react-router":"../../node_modules/react-router/dist/index.js","@remix-run/router":"../../node_modules/@remix-run/router/dist/router.js"}],"assets/logo.png":[function(require,module,exports) {
-module.exports = "/logo.e9a9c890.png";
-},{}],"components/App.js":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","react-router":"../../node_modules/react-router/dist/index.js","@remix-run/router":"../../node_modules/@remix-run/router/dist/router.js"}],"components/App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -35435,9 +35433,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _react = _interopRequireWildcard(require("react"));
-var _reactRouterDom = require("react-router-dom");
-var _logo = _interopRequireDefault(require("../assets/logo.png"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
@@ -35461,24 +35456,16 @@ function App() {
   var address = walletInfo.address,
     balance = walletInfo.balance;
   return _react.default.createElement("div", {
-    className: "App"
-  }, _react.default.createElement("img", {
-    className: "logo",
-    src: _logo.default,
-    alt: ""
-  }), _react.default.createElement("br", null), _react.default.createElement("div", null, "Welcome to the blockchain..."), _react.default.createElement("br", null), _react.default.createElement("div", null, _react.default.createElement(_reactRouterDom.Link, {
-    to: "/blocks"
-  }, "Blocks")), _react.default.createElement("div", null, _react.default.createElement(_reactRouterDom.Link, {
-    to: "/conduct-transaction"
-  }, "Conduct a Transaction")), _react.default.createElement("div", null, _react.default.createElement(_reactRouterDom.Link, {
-    to: "/transaction-pool"
-  }, "Transaction Pool")), _react.default.createElement("br", null), _react.default.createElement("div", {
-    className: "WalletInfo"
-  }, _react.default.createElement("div", null, "Address: ", address), _react.default.createElement("div", null, "Balance: ", balance)), _react.default.createElement("br", null));
+    className: "home"
+  }, _react.default.createElement("div", {
+    className: "heading"
+  }, "Welcome to the blockchain..."), _react.default.createElement("div", {
+    className: "wallet-info"
+  }, _react.default.createElement("div", null, _react.default.createElement("span", null, "Address:"), " ", _react.default.createElement("span", null, address)), _react.default.createElement("div", null, _react.default.createElement("span", null, "Balance:"), " ", _react.default.createElement("span", null, balance))));
 }
 var _default = App;
 exports.default = _default;
-},{"react":"../../node_modules/react/index.js","react-router-dom":"../../node_modules/react-router-dom/dist/index.js","../assets/logo.png":"assets/logo.png"}],"components/Transaction.js":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js"}],"components/Transaction.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -35493,7 +35480,7 @@ var Transaction = function Transaction(_ref) {
     outputMap = transaction.outputMap;
   var recipients = Object.keys(outputMap);
   return _react.default.createElement("div", {
-    className: "Transaction"
+    className: "transaction"
   }, _react.default.createElement("div", null, "From: ", "".concat(input.address.substring(0, 20), "..."), " | Balance: ", input.amount), recipients.map(function (recipient) {
     return _react.default.createElement("div", {
       key: recipient
@@ -35567,7 +35554,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _react = _interopRequireWildcard(require("react"));
-var _reactRouterDom = require("react-router-dom");
 var _Block = _interopRequireDefault(require("./Block"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
@@ -35590,10 +35576,9 @@ function Blocks() {
       return setBlocks(json);
     });
   }, []);
-  console.log('blocks', blocks);
-  return _react.default.createElement("div", null, _react.default.createElement("div", null, _react.default.createElement(_reactRouterDom.Link, {
-    to: "/"
-  }, "Home")), _react.default.createElement("h3", null, "Blocks"), blocks.map(function (block) {
+  return _react.default.createElement("div", null, _react.default.createElement("h3", {
+    className: "heading"
+  }, "Blocks"), blocks.map(function (block) {
     return _react.default.createElement(_Block.default, {
       key: block.hash,
       block: block
@@ -35602,7 +35587,7 @@ function Blocks() {
 }
 var _default = Blocks;
 exports.default = _default;
-},{"react":"../../node_modules/react/index.js","react-router-dom":"../../node_modules/react-router-dom/dist/index.js","./Block":"components/Block.js"}],"components/ConductTransaction.js":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","./Block":"components/Block.js"}],"components/ConductTransaction.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -35613,10 +35598,10 @@ var _react = _interopRequireWildcard(require("react"));
 var _reactRouterDom = require("react-router-dom");
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, defineProperty = Object.defineProperty || function (obj, key, desc) { obj[key] = desc.value; }, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return defineProperty(generator, "_invoke", { value: makeInvokeMethod(innerFn, self, context) }), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; defineProperty(this, "_invoke", { value: function value(method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; } function maybeInvokeDelegate(delegate, context) { var methodName = context.method, method = delegate.iterator[methodName]; if (undefined === method) return context.delegate = null, "throw" === methodName && delegate.iterator.return && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method) || "return" !== methodName && (context.method = "throw", context.arg = new TypeError("The iterator does not provide a '" + methodName + "' method")), ContinueSentinel; var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, defineProperty(Gp, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), defineProperty(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (val) { var object = Object(val), keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, catch: function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -35637,7 +35622,6 @@ function ConductTransaction() {
     setRecipient(event.target.value);
   };
   var updateAmount = function updateAmount(event) {
-    console.log(event.target.value, _typeof(Number(event.target.value)));
     setAmount(Number(event.target.value));
   };
   var conductTransaction = /*#__PURE__*/function () {
@@ -35674,26 +35658,93 @@ function ConductTransaction() {
     };
   }();
   return _react.default.createElement("div", {
-    className: "ConductTransaction"
-  }, _react.default.createElement(_reactRouterDom.Link, {
-    to: "/"
-  }, "Home"), _react.default.createElement("h3", null, "Conduct a Transaction"), _react.default.createElement("div", null, _react.default.createElement("input", {
+    className: "conduct-transaction"
+  }, _react.default.createElement("h3", {
+    className: "heading"
+  }, "Conduct a Transaction"), _react.default.createElement("div", {
+    className: "form"
+  }, _react.default.createElement("div", {
+    className: "form-group"
+  }, _react.default.createElement("label", {
+    htmlFor: "recipient"
+  }, "Recipient"), _react.default.createElement("input", {
+    id: "recipient",
     type: "text",
     placeholder: "recipient",
     value: recipient,
-    onChange: updateRecipient
-  })), _react.default.createElement("div", null, _react.default.createElement("input", {
+    onChange: updateRecipient,
+    required: true
+  })), _react.default.createElement("div", {
+    className: "form-group"
+  }, _react.default.createElement("label", {
+    htmlFor: "amount"
+  }, "Amount"), _react.default.createElement("input", {
+    id: "amount",
     type: "number",
     placeholder: "amount",
     value: amount,
-    onChange: updateAmount
-  })), _react.default.createElement("div", null, _react.default.createElement("button", {
+    onChange: updateAmount,
+    required: true
+  })), _react.default.createElement("div", {
+    className: "form-button"
+  }, _react.default.createElement("button", {
     onClick: conductTransaction
-  }, "Submit")));
+  }, "Submit"))));
 }
 var _default = ConductTransaction;
 exports.default = _default;
-},{"react":"../../node_modules/react/index.js","react-router-dom":"../../node_modules/react-router-dom/dist/index.js"}],"components/TransactionPool.js":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","react-router-dom":"../../node_modules/react-router-dom/dist/index.js"}],"assets/logo.png":[function(require,module,exports) {
+module.exports = "/logo.e9a9c890.png";
+},{}],"components/Navbar.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _react = _interopRequireDefault(require("react"));
+var _reactRouterDom = require("react-router-dom");
+var _logo = _interopRequireDefault(require("../assets/logo.png"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function Navbar() {
+  return _react.default.createElement("div", {
+    className: "navbar"
+  }, _react.default.createElement("div", {
+    className: "logo"
+  }, _react.default.createElement("img", {
+    src: _logo.default,
+    alt: ""
+  })), _react.default.createElement("div", null, _react.default.createElement(_reactRouterDom.Link, {
+    to: "/"
+  }, "Home")), _react.default.createElement("div", null, _react.default.createElement(_reactRouterDom.Link, {
+    to: "/blocks"
+  }, "Blocks")), _react.default.createElement("div", null, _react.default.createElement(_reactRouterDom.Link, {
+    to: "/conduct-transaction"
+  }, "Conduct a Transaction")), _react.default.createElement("div", null, _react.default.createElement(_reactRouterDom.Link, {
+    to: "/transaction-pool"
+  }, "Transaction Pool")));
+}
+var _default = Navbar;
+exports.default = _default;
+},{"react":"../../node_modules/react/index.js","react-router-dom":"../../node_modules/react-router-dom/dist/index.js","../assets/logo.png":"assets/logo.png"}],"components/SharedLayout.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _react = _interopRequireDefault(require("react"));
+var _reactRouterDom = require("react-router-dom");
+var _Navbar = _interopRequireDefault(require("./Navbar"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function SharedLayout() {
+  return _react.default.createElement("div", null, _react.default.createElement(_Navbar.default, null), _react.default.createElement("div", null, _react.default.createElement("div", {
+    className: "layout"
+  }, _react.default.createElement(_reactRouterDom.Outlet, null))));
+}
+var _default = SharedLayout;
+exports.default = _default;
+},{"react":"../../node_modules/react/index.js","react-router-dom":"../../node_modules/react-router-dom/dist/index.js","./Navbar":"components/Navbar.js"}],"components/TransactionPool.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -35722,7 +35773,7 @@ function TransactionPool() {
     transactionPoolMap = _useState2[0],
     setTransactionPoolMap = _useState2[1];
   var navigate = (0, _reactRouterDom.useNavigate)();
-  var POLL_INTERVAL_MS = 10000;
+  var POLL_INTERVAL_MS = 1000;
   var fetchMineTransactions = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
       return _regeneratorRuntime().wrap(function _callee$(_context) {
@@ -35762,10 +35813,10 @@ function TransactionPool() {
     };
   }, []);
   return _react.default.createElement("div", {
-    className: "TransactionPool"
-  }, _react.default.createElement("div", null, _react.default.createElement(_reactRouterDom.Link, {
-    to: "/"
-  }, "Home")), _react.default.createElement("h3", null, "Transaction Pool"), Object.values(transactionPoolMap).map(function (transaction) {
+    className: "transaction-pool"
+  }, _react.default.createElement("h3", {
+    className: "heading"
+  }, "Transaction Pool"), Object.values(transactionPoolMap).map(function (transaction) {
     return _react.default.createElement("div", {
       key: transaction.id
     }, _react.default.createElement("hr", null), _react.default.createElement(_Transaction.default, {
@@ -35841,11 +35892,15 @@ var _reactRouterDom = require("react-router-dom");
 var _App = _interopRequireDefault(require("./components/App"));
 var _Blocks = _interopRequireDefault(require("./components/Blocks"));
 var _ConductTransaction = _interopRequireDefault(require("./components/ConductTransaction"));
+var _SharedLayout = _interopRequireDefault(require("./components/SharedLayout"));
 var _TransactionPool = _interopRequireDefault(require("./components/TransactionPool"));
 require("./index.css");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 var root = (0, _client.createRoot)(document.getElementById('root')); // createRoot(container!) if you use TypeScript
 root.render(_react.default.createElement(_reactRouterDom.BrowserRouter, null, _react.default.createElement(_reactRouterDom.Routes, null, _react.default.createElement(_reactRouterDom.Route, {
+  path: "/",
+  element: _react.default.createElement(_SharedLayout.default, null)
+}, _react.default.createElement(_reactRouterDom.Route, {
   exact: true,
   path: "/",
   element: _react.default.createElement(_App.default, null)
@@ -35858,8 +35913,8 @@ root.render(_react.default.createElement(_reactRouterDom.BrowserRouter, null, _r
 }), _react.default.createElement(_reactRouterDom.Route, {
   path: "/transaction-pool",
   element: _react.default.createElement(_TransactionPool.default, null)
-}))));
-},{"react":"../../node_modules/react/index.js","react-dom/client":"../../node_modules/react-dom/client.js","react-router-dom":"../../node_modules/react-router-dom/dist/index.js","./components/App":"components/App.js","./components/Blocks":"components/Blocks.js","./components/ConductTransaction":"components/ConductTransaction.js","./components/TransactionPool":"components/TransactionPool.js","./index.css":"index.css"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+})))));
+},{"react":"../../node_modules/react/index.js","react-dom/client":"../../node_modules/react-dom/client.js","react-router-dom":"../../node_modules/react-router-dom/dist/index.js","./components/App":"components/App.js","./components/Blocks":"components/Blocks.js","./components/ConductTransaction":"components/ConductTransaction.js","./components/SharedLayout":"components/SharedLayout.js","./components/TransactionPool":"components/TransactionPool.js","./index.css":"index.css"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -35884,7 +35939,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "45829" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "40577" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

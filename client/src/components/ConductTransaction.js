@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function ConductTransaction() {
   const [recipient, setRecipient] = useState('');
@@ -28,27 +28,34 @@ function ConductTransaction() {
   }
 
   return (
-    <div className='ConductTransaction'>
-      <Link to='/'>Home</Link>
-      <h3>Conduct a Transaction</h3>
-      <div>
-        <input
-          type='text'
-          placeholder='recipient'
-          value={recipient}
-          onChange={updateRecipient}
-        />
-      </div>
-      <div>
-        <input
-          type='number'
-          placeholder='amount'
-          value={amount}
-          onChange={updateAmount}
-        />
-      </div>
-      <div>
-        <button onClick={conductTransaction}>Submit</button>
+    <div className='conduct-transaction'>
+      <h3 className='heading'>Conduct a Transaction</h3>
+      <div className='form'>
+        <div className='form-group'>
+          <label htmlFor="recipient">Recipient</label>
+          <input
+            id='recipient'
+            type='text'
+            placeholder='recipient'
+            value={recipient}
+            onChange={updateRecipient}
+            required
+          />
+        </div>
+        <div className='form-group'>
+          <label htmlFor="amount">Amount</label>
+          <input
+            id='amount'
+            type='number'
+            placeholder='amount'
+            value={amount}
+            onChange={updateAmount}
+            required
+          />
+        </div>
+        <div className='form-button'>
+          <button onClick={conductTransaction}>Submit</button>
+        </div>
       </div>
     </div>
   )
