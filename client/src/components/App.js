@@ -1,32 +1,36 @@
-import React, { Component } from 'react';
-import Blocks from './Blocks';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import logo from '../assets/logo.png';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { walletInfo: {} };
-  }
+function App() {
 
-  componentDidMount() {
-    fetch('http://localhost:3000/api/wallet-info')
+  const [walletInfo, setWalletInfo] = useState({});
+
+  useEffect(() => {
+    fetch(`${document.location.origin}/api/wallet-info`)
       .then(response => response.json())
-      .then(json => this.setState({ walletInfo: json }));
-  }
+      .then(json => setWalletInfo(json));
+  }, []);
 
-  render() {
-    console.log(this.state.walletInfo);
-    const { address, balance } = this.state.walletInfo;
+  const { address, balance } = walletInfo;
 
-    return (
-      <div>
-        <div>Welcome to the blockchain...</div>
+  return (
+    <div className='App'>
+      <img className='logo' src={logo} alt="" />
+      <br />
+      <div>Welcome to the blockchain...</div>
+      <br />
+      <div><Link to='/blocks'>Blocks</Link></div>
+      <div><Link to='/conduct-transaction'>Conduct a Transaction</Link></div>
+      <div><Link to='/transaction-pool'>Transaction Pool</Link></div>
+      <br />
+      <div className='WalletInfo'>
         <div>Address: {address}</div>
         <div>Balance: {balance}</div>
-        <br />
-        <Blocks />
       </div>
-    );
-  }
+      <br />
+    </div>
+  );
 }
 
 export default App;
