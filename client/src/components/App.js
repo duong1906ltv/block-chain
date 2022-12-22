@@ -16,7 +16,7 @@ function App() {
     <div className='home'>
       <div className='heading'>Welcome to the blockchain...</div>
       <div className='wallet-info'>
-        <div><span>Name:</span> <span>{address}</span></div>
+        <div><span>Name123:</span> <span>{address}</span></div>
         <div><span>Balance:</span> <span>{balance}</span></div>
       </div>
     </div>
