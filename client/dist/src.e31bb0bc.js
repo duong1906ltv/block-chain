@@ -35570,7 +35570,7 @@ function Blocks() {
     blocks = _useState2[0],
     setBlocks = _useState2[1];
   (0, _react.useEffect)(function () {
-    fetch('http://localhost:3000/api/blocks').then(function (response) {
+    fetch("".concat(document.location.origin, "/api/blocks")).then(function (response) {
       return response.json();
     }).then(function (json) {
       return setBlocks(json);
@@ -35939,7 +35939,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "40577" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "33667" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

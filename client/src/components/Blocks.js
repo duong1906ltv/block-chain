@@ -1,27 +1,27 @@
-import React, { useEffect, useState } from 'react';
-import Block from './Block';
+import React, { useEffect, useState } from "react";
+import Block from "./Block";
 
 function Blocks() {
-  const [blocks, setBlocks] = useState([])
+	const [blocks, setBlocks] = useState([]);
 
-  useEffect(() => {
-    fetch('http://localhost:3000/api/blocks')
-      .then(response => response.json())
-      .then(json => setBlocks(json));
-  }, []);
+	useEffect(() => {
+		fetch(`${document.location.origin}/api/blocks`)
+			.then((response) => response.json())
+			.then((json) => setBlocks(json));
+	}, []);
 
-  return (
-    <div>
-      <h3 className='heading'>Blocks</h3>
-      {
-        blocks.map(block => {
-          return (
-            <Block key={block.hash} block={block}>{block.hash}</Block>
-          )
-        })
-      }
-    </div>
-  );
+	return (
+		<div>
+			<h3 className="heading">Blocks</h3>
+			{blocks.map((block) => {
+				return (
+					<Block key={block.hash} block={block}>
+						{block.hash}
+					</Block>
+				);
+			})}
+		</div>
+	);
 }
 
 export default Blocks;
